@@ -19,7 +19,7 @@ namespace DVLD.Login
             InitializeComponent();
         }
 
-       
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -27,26 +27,26 @@ namespace DVLD.Login
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            clsUser user= clsUser.FindByUsernameAndPassword(txtUserName.Text.Trim(),txtPassword.Text.Trim());
+            clsUser user = clsUser.FindByUsernameAndPassword(txtUserName.Text.Trim(), txtPassword.Text.Trim());
 
-            if (user != null) 
-            { 
+            if (user != null)
+            {
 
-                if (chkRememberMe.Checked )
+                if (chkRememberMe.Checked)
                 {
                     //store username and password
-                    clsGlobal.RememberUsernameAndPassword(txtUserName.Text.Trim(), txtPassword.Text.Trim());
+                    clsGlobal.RememberUsernameAndPasswordInRegesrty(txtUserName.Text.Trim(), txtPassword.Text.Trim());
 
-                } 
-                  else
+                }
+                else
                 {
                     //store empty username and password
-                    clsGlobal.RememberUsernameAndPassword("", "");
+                    clsGlobal.RememberUsernameAndPasswordInRegesrty("", "");
 
                 }
 
                 //incase the user is not active
-                if (!user.IsActive )
+                if (!user.IsActive)
                 {
 
                     txtUserName.Focus();
@@ -54,17 +54,18 @@ namespace DVLD.Login
                     return;
                 }
 
-                 clsGlobal.CurrentUser = user;
-                 this.Hide();
-                 frmMain frm = new frmMain(this);
-                 frm.ShowDialog();
+                clsGlobal.CurrentUser = user;
+                this.Hide();
+                frmMain frm = new frmMain(this);
+                frm.ShowDialog();
 
 
-            } else
+            }
+            else
             {
                 txtUserName.Focus();
                 MessageBox.Show("Invalid Username/Password.", "Wrong Credintials", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }    
+            }
 
         }
 
@@ -72,7 +73,7 @@ namespace DVLD.Login
         {
             string UserName = "", Password = "";
 
-            if (clsGlobal.GetStoredCredential(ref UserName, ref Password))
+            if (clsGlobal.GetStoredCredentialFromRegistry(ref UserName, ref Password))
             {
                 txtUserName.Text = UserName;
                 txtPassword.Text = Password;
