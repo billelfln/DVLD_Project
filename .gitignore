@@ -1,0 +1,31 @@
+# تجاهل ملفات الـ Build
+bin/
+obj/
+*.pdb
+*.exe
+*.dll
+*.cache
+*.log
+
+# تجاهل الإعدادات الخاصة بالمطورين
+.vs/
+*.user
+*.suo
+*.ncb
+*.sdf
+*.VC.db
+
+# تجاهل ملفات الحزم والمكتبات
+packages/
+node_modules/
+
+# تجاهل ملفات الإعدادات وقواعد البيانات
+appsettings.json
+appsettings.Development.json
+secrets.json
+*.mdf
+*.ldf
+*.sqlite
+
+# تجاهل ملفات OneDrive المزعجة
+*.~*
